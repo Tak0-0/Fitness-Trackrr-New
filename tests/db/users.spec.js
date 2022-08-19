@@ -12,7 +12,7 @@ const { createFakeUser } = require("../helpers");
 
 describe("DB Users", () => {
   describe("createUser({ username, password })", () => {
-    xit("Creates the user", async () => {
+    it("Creates the user", async () => {
       const fakeUserData = {
         username: "Horace",
         password: faker.internet.password(),
@@ -26,7 +26,7 @@ describe("DB Users", () => {
       expect(queriedUser.username).toBe(fakeUserData.username);
     });
 
-    xit("EXTRA CREDIT: Does not store plaintext password in the database", async () => {
+    it("EXTRA CREDIT: Does not store plaintext password in the database", async () => {
       const fakeUserData = {
         username: "Harry",
         password: faker.internet.password(),
@@ -36,7 +36,7 @@ describe("DB Users", () => {
       expect(queriedUser.password).not.toBe(fakeUserData.password);
     });
 
-    xit("EXTRA CREDIT: Hashes the password (salted 10 times) before storing it to the database", async () => {
+    it("EXTRA CREDIT: Hashes the password (salted 10 times) before storing it to the database", async () => {
       const fakeUserData = {
         username: "Nicky",
         password: faker.internet.password(),
@@ -60,7 +60,7 @@ describe("DB Users", () => {
       expect(hashedVersion).toBe(true);
     });
 
-    xit("Does NOT return the password", async () => {
+    it("Does NOT return the password", async () => {
       const fakeUserData = {
         username: faker.internet.userName(),
         password: faker.internet.password(),
@@ -71,7 +71,7 @@ describe("DB Users", () => {
   });
 
   describe("getUser({ username, password })", () => {
-    xit("returns the user when the password verifies", async () => {
+    it("returns the user when the password verifies", async () => {
       const fakeUserData = {
         username: "Nicole",
         password: faker.internet.password(),
@@ -83,7 +83,7 @@ describe("DB Users", () => {
       expect(user.username).toBe(fakeUserData.username);
     });
 
-    xit("Does not return the user if the password doesn't verify", async () => {
+    it("Does not return the user if the password doesn't verify", async () => {
       const fakeUserData = {
         username: "Issac",
         password: faker.internet.password(),
@@ -98,7 +98,7 @@ describe("DB Users", () => {
       expect(user).toBeFalsy();
     });
 
-    xit("Does NOT return the password", async () => {
+    it("Does NOT return the password", async () => {
       const fakeUserData = {
         username: "Michael",
         password: faker.internet.password(),
@@ -109,14 +109,14 @@ describe("DB Users", () => {
     });
   });
   describe("getUserById", () => {
-    xit("Gets a user based on the user Id", async () => {
+    it("Gets a user based on the user Id", async () => {
       const fakeUser = await createFakeUser("Jacob");
       const user = await getUserById(fakeUser.id);
       expect(user).toBeTruthy();
       expect(user.id).toBe(fakeUser.id);
     });
 
-    xit("does not return the password", async () => {
+    it("does not return the password", async () => {
       const fakeUser = await createFakeUser("Jonathan");
       const user = await getUserById(fakeUser.id);
       expect(user.password).toBeFalsy();

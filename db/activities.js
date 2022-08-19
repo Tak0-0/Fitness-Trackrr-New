@@ -38,7 +38,7 @@ async function attachActivitiesToRoutines(routines) {
     const {
       rows: [activities],
     } = await client.query(
-      `UPDATE activities SET name = '${routines.rotuineId}', description = '${routines.Id}'
+      `UPDATE activities SET name = '${routines.routineId}', description = '${routines.Id}'
        WHERE id=${id}
        RETURNING *;`
     );

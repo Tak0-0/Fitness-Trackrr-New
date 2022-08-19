@@ -4,7 +4,7 @@ DO NOT CHANGE THIS FILE
 
 */
 require("dotenv").config();
-const client = require('../../db/client');
+const client = require("../../db/client");
 const {
   getAllActivities,
   createActivity,
@@ -15,7 +15,6 @@ const {
 const { createFakeActivity } = require("../helpers");
 
 describe("DB Activities", () => {
-
   describe("getAllActivities", () => {
     it("selects and returns an array of all activities", async () => {
       await createFakeActivity("Sit ups", "Do 100 reps");
@@ -41,7 +40,10 @@ describe("DB Activities", () => {
 
   describe("getActivityByName", () => {
     it("gets an activity by it's name", async () => {
-      const fakeActivity = await createFakeActivity("Power Walking", "At the mall");
+      const fakeActivity = await createFakeActivity(
+        "Power Walking",
+        "At the mall"
+      );
       const activity = await getActivityByName(fakeActivity.name);
       expect(activity.id).toEqual(fakeActivity.id);
     });
@@ -61,7 +63,10 @@ describe("DB Activities", () => {
 
   describe("updateActivity", () => {
     it("Updates name without affecting the ID. Returns the updated Activity.", async () => {
-      const fakeActivity = await createFakeActivity("Baseball", "Run the bases");
+      const fakeActivity = await createFakeActivity(
+        "Baseball",
+        "Run the bases"
+      );
       const name = "Softball";
       const updatedActivity = await updateActivity({
         id: fakeActivity.id,

@@ -1,7 +1,7 @@
 // require in the database adapter functions as you write them (createUser, createActivity...)
 // const { } = require('./');
 const client = require("./client");
-
+const { createUser, createActivity, createRoutine } = require("./index");
 async function dropTables() {
   console.log("Dropping All Tables...");
   await client.query(`
