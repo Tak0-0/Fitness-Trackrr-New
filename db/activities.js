@@ -35,6 +35,14 @@ async function getActivityByName(name) {
 // select and return an array of all activities
 async function attachActivitiesToRoutines(routines) {
   try {
+    const {
+      rows: [activities],
+    } = await client.query(
+      `UPDATE activities SET name = '${routines.rotuineId}', description = '${routines.Id}'
+       WHERE id=${id}
+       RETURNING *;`
+    );
+    return routines;
   } catch (error) {
     console.log(error.error);
   }
